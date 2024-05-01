@@ -19,6 +19,16 @@ class HomeViewController: UIViewController {
         return label
     }()
     
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Welcome to the demo of Danger Swift"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18)
+        return label
+    }()
+    
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +45,14 @@ class HomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             welcomeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        // Subtitle Label
+        view.addSubview(subtitleLabel)
+        NSLayoutConstraint.activate([
+            subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            subtitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            subtitleLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 18)
         ])
     }
 }
