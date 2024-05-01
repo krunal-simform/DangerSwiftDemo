@@ -9,10 +9,15 @@ if editedFiles.count - danger.git.deletedFiles.count > 300 {
 }
 
 // Encourage writing up some reasoning about the PR, rather than just leaving a title.
-let body = danger.github.pullRequest.body?.count ?? 0
-let linesOfCode = danger.github.pullRequest.additions ?? 0
-if body < 3 && linesOfCode > 10 {
-    warn("Please provide a summary in the Pull Request description")
+if let body = danger.github.pullRequest.body?.lowercased() {
+    let keywords = ["close", "closes", "closed", "fix", "fixes", "fixed", "resolve", "resolves", "resolved"]
+    if let let pattern = try? Regex("(\(keywords.joined(separator: "|")))\\s#[0-9]+") {
+        if !body.contains(pattern) {
+            warn("Please add issue id.")
+        }
+    }
+} else {
+    warn("Please add issue id.")
 }
 
 // Support running via `danger local`
@@ -24,4 +29,4 @@ if danger.github != nil {
 }
 
 print("Running Swiftlint on changed files...")
-SwiftLint.lint(.files(editedFiles), inline: true, strict: true, quiet: false)
+SwiftLint.lint(.files(editedFiles), inline: true, configFile: ".swiftlint.yml", strict: true, quiet: false)
