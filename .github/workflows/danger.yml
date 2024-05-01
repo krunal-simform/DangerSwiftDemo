@@ -3,6 +3,7 @@ name: Danger
 on:
   pull_request:
     types: [synchronize, opened, reopened, labeled, unlabeled, edited]
+    branches: ["master", "develop", "feature/*", "bugfix/*"]
  
 env:
   DEVELOPER_DIR: /Applications/Xcode_15.3.app/Contents/Developer
