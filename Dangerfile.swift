@@ -27,10 +27,4 @@ if danger.github != nil {
 }
 
 print("Running Swiftlint on changed files...")
-<<<<<<< Updated upstream
-SwiftLint.lint(.files(editedFiles), inline: true, strict: true, quiet: false)
-message("Done")
-=======
-SwiftLint.lint(.files(editedFiles), inline: true, strict: true, quiet: false, configFile)
 SwiftLint.lint(.files(editedFiles), inline: true, configFile: ".swiftlint.yml", strict: true, quiet: false)
->>>>>>> Stashed changes
