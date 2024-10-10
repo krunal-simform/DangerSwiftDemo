@@ -5,19 +5,24 @@ let danger = Danger()
 let editedFiles = danger.git.modifiedFiles + danger.git.createdFiles
 
 if editedFiles.count - danger.git.deletedFiles.count > 300 {
-  warn("Big PR, try to keep changes smaller if you can")
+    warn("Big PR, try to keep changes smaller if you can")
 }
 
 // Encourage writing up some reasoning about the PR, rather than just leaving a title.
-if let body = danger.github.pullRequest.body?.lowercased() {
+if danger.github != nil,
+   let body = danger.github.pullRequest.body?.lowercased() {
     let keywords = ["close", "closes", "closed", "fix", "fixes", "fixed", "resolve", "resolves", "resolved"]
     if let pattern = try? Regex("(\(keywords.joined(separator: "|")))\\s#[0-9]+") {
         if !body.contains(pattern) {
             warn("Please add issue id.")
         }
+        if let issuePattern = try? Regex("#[0-9]+"),
+           !body.contains(issuePattern) {
+            warn("Please add issue id.")
+        }
+    } else {
+        warn("Please add issue id.")
     }
-} else {
-    warn("Please add issue id.")
 }
 
 // Support running via `danger local`
