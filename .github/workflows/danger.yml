@@ -40,5 +40,5 @@ jobs:
  
       - name: danger
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: danger-swift ci
