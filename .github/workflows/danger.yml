@@ -5,40 +5,29 @@ on:
     types: [synchronize, opened, reopened, labeled, unlabeled, edited]
     branches: ["master", "develop", "feature/*", "bugfix/*"]
  
-env:
-  DEVELOPER_DIR: /Applications/Xcode_15.3.app/Contents/Developer
- 
 jobs:
   main:
     name: Review, Lint, Verify
-    runs-on: macos-14
+    runs-on: macOS-15
     steps:
       - name: git checkout
         uses: actions/checkout@v3
- 
-      # - name: ruby versions
-      #   run: |
-      #     ruby --version
-      #     gem --version
-      #     bundler --version
- 
-      - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_15.3.app/Contents/Developer'
- 
-      # - name: ruby setup
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: 2.7
-      #     bundler-cache: true
+        with:
+          fetch-depth: 0
+  
+      - name: Select Xcode
+        uses: mobiledevops/xcode-select-version-action@v1
+        with:
+          xcode-select-version: 16.0
  
       - name: Install swiftlint
         run:  brew install swiftlint
  
-      - name: Install danger
-        run: brew install danger/tap/danger-swift
+      - name: Install danger-js
+        run: brew install danger/tap/danger-js
         shell: bash
  
       - name: danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: danger-swift ci
+        run: swift run danger-swift ci
