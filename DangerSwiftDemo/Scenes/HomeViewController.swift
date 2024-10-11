@@ -24,6 +24,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        
+        // initial Violation
+        var arr = Array(repeating: 0, count: 10)
+        if arr.count == 0 {
+            print("empty violation")
+        }
     }
     
     // MARK: - Methods
