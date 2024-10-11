@@ -10,7 +10,8 @@ let package = Package(
             targets: ["DangerDependencies"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/abhi-m-simformsolutons/swift.git", revision: "6a1feb79502629ce272ade809f6f5992c43ad9fd"),
+        .package(path: "/Users/krunal.patel/Projects/iOS/swift")
+//        .package(url: "https://github.com/abhi-m-simformsolutons/swift.git", revision: "6a1feb79502629ce272ade809f6f5992c43ad9fd"),
     ],
     targets: [
         // This is just an arbitrary Swift file in our app, that has
