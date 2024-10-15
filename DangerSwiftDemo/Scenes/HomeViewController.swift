@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
+
     // MARK: - Views
     private let welcomeLabel: UILabel = {
         let label = UILabel()
@@ -18,23 +18,53 @@ class HomeViewController: UIViewController {
         label.font = .boldSystemFont(ofSize: 24)
         return label
     }()
-    
+
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Welcome to the demo of Danger Swift"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18)
+        return label
+    }()
+
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
+        
+        // initial Violation
+        var arr = Array(repeating: 0, count: 10)
+        if arr.count == 0 {
+            print("empty violation")
+        }
+        
+        // New violation
+        var arr2 = Array(repeating: 0, count: 10)
+        if arr2.count == 0 {
+            print("empty violation 2")
+        }
     }
-    
+
     // MARK: - Methods
     private func setupViews() {
         view.backgroundColor = .background
-        
+
         // Welcome Label
         view.addSubview(welcomeLabel)
         NSLayoutConstraint.activate([
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             welcomeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        // Subtitle Label
+        view.addSubview(subtitleLabel)
+        NSLayoutConstraint.activate([
+            subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            subtitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            subtitleLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 18)
         ])
     }
 }

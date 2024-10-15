@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "DangerDependencies",
+    platforms: [.macOS(.v13)],
     products: [
         .library(
             name: "DangerDeps",
@@ -10,14 +11,16 @@ let package = Package(
             targets: ["DangerDependencies"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/abhi-m-simformsolutons/swift.git", revision: "6a1feb79502629ce272ade809f6f5992c43ad9fd"),
+        .package(url: "https://github.com/danger/swift.git", from: "3.20.0"),
+        .package(url: "https://github.com/taji-taji/DangerSwiftPeriphery.git", from: "1.4.1")
     ],
     targets: [
         // This is just an arbitrary Swift file in our app, that has
         // no dependencies outside of Foundation, the dependencies section
         // ensures that the library for Danger gets build also.
         .target(name: "DangerDependencies", dependencies: [
-            .product(name: "Danger", package: "swift")
-        ], path: "Loader", sources: ["DangerLoader.swift"]),
+            .product(name: "Danger", package: "swift"),
+            .product(name: "DangerSwiftPeriphery", package: "DangerSwiftPeriphery")
+        ], sources: ["DangerLoader.swift"]),
     ]
 )

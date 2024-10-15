@@ -28,14 +28,6 @@
       }
     },
     {
-      "identity" : "swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/abhi-m-simformsolutons/swift.git",
-      "state" : {
-        "revision" : "6a1feb79502629ce272ade809f6f5992c43ad9fd"
-      }
-    },
-    {
       "identity" : "swiftformat",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nicklockwood/SwiftFormat",
