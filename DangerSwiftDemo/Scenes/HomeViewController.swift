@@ -40,6 +40,12 @@ class HomeViewController: UIViewController {
         if arr.count == 0 {
             print("empty violation")
         }
+        
+        // New violation
+        var arr2 = Array(repeating: 0, count: 10)
+        if arr2.count == 0 {
+            print("empty violation 2")
+        }
     }
 
     // MARK: - Methods
