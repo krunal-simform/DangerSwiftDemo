@@ -26,6 +26,9 @@ jobs:
       - name: Install danger-js
         run: brew install danger/tap/danger-js
         shell: bash
+        
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
  
       - name: danger
         env:
